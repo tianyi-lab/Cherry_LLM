@@ -137,8 +137,8 @@ These results verify the effectiveness of our method, which can be used to selec
 
 |                          | **Model**|
 |--------------------------|:-:|
-| Pre-Experienced Model (Alpaca)      |/|
-| Pre-Experienced Model (WizardLM)     |/|
+| Pre-Experienced Model (Alpaca)      |[Link]|
+| Pre-Experienced Model (WizardLM)     |[Link]|
 
 
 
