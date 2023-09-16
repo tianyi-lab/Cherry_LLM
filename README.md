@@ -21,6 +21,18 @@ The repo contains:
 ## News
 - [2023/09] We released codes for this project.
 
+## Contents
+- [Overview](#overview)
+- [Highlights](#highlights)
+- [Install](#install)
+- [Run Code](#run-code)
+- [Data and Model Weights](#data-and-model-weights)
+- [Performance Comparison ](#performance-comparison)
+- [Prompt](#prompt)
+- [Hyperparameters](#hyperparameters)
+- [ToDo](#todo)
+- [Citation](#citation)
+
 ## Overview
 
 Our study puts forth a method for autonomously sifting through expansive open-source datasets to discover the most impactful training samples. We coin these samples as "cherry data", designating those data fragments that hold the potential to exponentially enhance LLM instruction tuning. At the heart of our research is the hypothesis that during their preliminary training stages with carefully chosen instruction data, LLMs can develop an intrinsic capability to discern instructions. This foundational understanding equips them with the discernment to assess the quality of broader datasets thus making it possible to estimate the instruction-following difficulty in a self-guided manner. 
@@ -47,7 +59,7 @@ Note: This `requirements.txt` is originated from the [Stanford Alpaca](https://g
 
 `pip install scikit-learn`
 
-## Run Data Selection
+## Run Code
 
 
 1. Select Pre-Experienced Data
@@ -114,7 +126,7 @@ python cherry_seletion/data_by_IFD.py \
 
 6. Train Cherry Model
 
-## Selected Cherry Data and Model Weights
+## Data and Model Weights
 
 The following table provides a comparison between our cherry models and baseline models on the Huggingface Open LLM Leaderboard and AlpacaEval Leaderboard. 
 These results verify the effectiveness of our method, which can be used to select the most valuable data samples for instruction tuning. 
@@ -128,7 +140,7 @@ These results verify the effectiveness of our method, which can be used to selec
 | **15% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_15_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-15-percent-7B)|
 ||||||||||||
 | **WizardLM**    | 54.18       | 51.60   | 77.70         | 42.70   | 44.70          || 67.64          ||/|/|
-| **WizardLM*** | 52.79  | 53.07   | 77.44         | 37.75   | 42.90          || 61.99          ||[[hf-Link]](https://huggingface.co/datasets/MingLiiii/cherry_wizardlm_filtered)|[Link]|
+| **WizardLM*** | 52.79  | 53.07   | 77.44         | 37.75   | 42.90          || 61.99          ||[[hf-Link]](https://huggingface.co/datasets/MingLiiii/cherry_wizardlm_filtered)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-filtered-7B)|
 | **10% WizardLM**  | 51.59       | 52.90   | 78.95         | 33.08   | 41.41         || 61.44          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-10-percent-7B)|
 | **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_20_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-20-percent-7B)|
 | **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_30_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-30-percent-7B)|
@@ -137,7 +149,7 @@ These results verify the effectiveness of our method, which can be used to selec
 
 |                          | **Model**|
 |--------------------------|:-:|
-| Pre-Experienced Model (Alpaca)      |[Link]|
+| Pre-Experienced Model (Alpaca)      |[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-pre-experienced-7B)|
 | Pre-Experienced Model (WizardLM)     |[Link]|
 
 
@@ -206,9 +218,15 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 | Cherry Models (Alpaca) | 128 | 2e-5 | 3 | 512 | 0 | 0.03 |
 | Cherry Models (WizardLM) | 128 | 2e-5 | 3 | 1024 | 0 | 0.03 |
 
+## ToDo
+- [x] Release the code, data, and models. 
+- [ ] Release the evaluation code for comparison.
+- [ ] Train Cherry WizardLM with the length of 2048.
+- [ ] Maybe try using QLORA.
+
 ## Citation
 
-Please cite our paper if you find the repository helpful.
+Please consider citing our paper if you think our codes, data, or models are useful. Thank you!
 ```
 @misc{li2023quantity,
       title={From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning}, 
