@@ -3,11 +3,12 @@ import json
 import argparse
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Finetune a transformers model on a summarization task")
+    parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_name", type=str, default='', help="The name of the dataset to use.")
     parser.add_argument("--fname1", type=str, default='')
     parser.add_argument("--fname2", type=str, default='')
     parser.add_argument("--save_name", type=str, default='') # a vs b format
+    parser.add_argument("--max_length", type=int, default=1024)
 
     args = parser.parse_args()
     return args
@@ -15,7 +16,7 @@ def parse_args():
 args = parse_args()
 
 print('args.dataset_name',args.dataset_name)
-f_name = args.dataset_name+'_0_1024.json'
+f_name = args.dataset_name+'_'+str(args.max_length)+'.json'
 args.fname1 = os.path.join(args.fname1,f_name)
 args.fname2 = os.path.join(args.fname2,f_name)
 print('args.fname1',args.fname1)
@@ -37,8 +38,6 @@ elif(args.dataset_name=="sinstruct"):
     prompt_key = 'instruction'
 elif(args.dataset_name=="wizardlm"):
     prompt_key = 'Instruction'
-elif(args.dataset_name=="truthfulqa"):
-    prompt_key = 'Question'
 elif(args.dataset_name=="lima"):
     prompt_key = 'conversations'
 

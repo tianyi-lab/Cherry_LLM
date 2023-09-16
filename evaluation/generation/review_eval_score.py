@@ -2,20 +2,22 @@ import os
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+import argparse
 
-review_home_path = 'logs/xxx1-VSxxx2'
-datasets = ['Vicuna','Koala','WizardLM','SInstruct','LIMA']
-# datasets = ['Vicuna','Koala','WizardLM','SInstruct']
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--review_home_path", type=str, default='', help="home path that save the reviews")
+    parser.add_argument('--task_list', nargs='+', type=str, default=['Vicuna','Koala','WizardLM','SInstruct','LIMA'])
+    parser.add_argument("--key1", type=str, default='Model1')
+    parser.add_argument("--key2", type=str, default='Model2')
+    parser.add_argument("--save_name", type=str, default='result') # a vs b format
+    parser.add_argument("--max_length", type=int, default=1024)
+    parser.add_argument("--api_model",type=str,default='gpt-3.5-turbo')
 
-save_name = review_home_path.split('/')[-1]
+    args = parser.parse_args()
+    return args
 
-key1, key2 = save_name.split('-VS-')[0],save_name.split('-VS-')[1]
-title_ = save_name
-
-# key1 = 'Pre-Experienced Selected by Alpaca (15%)'
-# # key2 = 'WizardLM' + r"$^*$" + '(100%)'
-# key2 = 'Alpaca (100%)'
-# title_ = key1 + ' vs. ' + key2 
+args = parse_args()
 
 
 def survey(results, category_names):
@@ -84,20 +86,22 @@ def get_scores_all(pure_data):
             score3 += 1
     return [score1, score2, score3]
 
-for dataset in datasets:
+for dataset in args.task_list:
     review_path = ''
-    for root, ds, fs in os.walk(review_home_path):
+    for root, ds, fs in os.walk(args.review_home_path):
             for f in fs:
-                if 'reviews' in f and f.endswith('.json') and dataset.lower() in f:
-                    review_path = os.path.join(root, f)
-                # if 'reviews_gpt4' in f and f.endswith('.json') and dataset.lower() in f:
-                #     review_path = os.path.join(root, f)
+                if 'gpt-3.5' in args.api_model:
+                    if 'reviews_gpt3.5' in f and f.endswith('.json') and dataset.lower() in f:
+                        review_path = os.path.join(root, f)
+                elif 'gpt-4' in args.api_model:
+                    if 'reviews_gpt4' in f and f.endswith('.json') and dataset.lower() in f:
+                        review_path = os.path.join(root, f)
     with open(review_path, "r") as f:
         review_data = json.load(f)
     pure_data = review_data['data']
 
     scores = get_scores_all(pure_data)
-    category_names = [f"{key1} wins", "Tie", f"{key2} wins"]
+    category_names = [f"{args.key1} wins", "Tie", f"{args.key2} wins"]
     results[dataset] = scores
 
 def cal_rate(results):
@@ -112,18 +116,6 @@ def cal_rate(results):
 
 cal_rate(results)
 survey(results, category_names)
-img_path = os.path.join(review_home_path,save_name+'.jpg')
-plt.title(title_)
+img_path = os.path.join(args.review_home_path,args.save_name+'.jpg')
 plt.savefig(img_path)
 pass
-
-# from PIL import Image
-# def crop_edges(image_path, left, upper, right, lower):
-#     with Image.open(image_path) as img:
-#         width, height = img.size
-#         cropped = img.crop((left, upper, width - right, height - lower))
-#         return cropped
-# cropped_img = crop_edges(img_path,45,45,45,45)
-# cropped_img.save(img_path)
-# pass
-

@@ -5,7 +5,7 @@ import json
 import os
 from tqdm import tqdm
 
-PROMPT_DICT = {
+PROMPT_DICT_ALPACA = {
     "prompt_input": (
         "Below is an instruction that describes a task, paired with an input that provides further context. "
         "Write a response that appropriately completes the request.\n\n"
@@ -17,9 +17,25 @@ PROMPT_DICT = {
         "### Instruction:\n{instruction}\n\n### Response:"
     ),
 }
+PROMPT_DICT_WIZARDLM = {
+    "prompt_input": (
+        "{instruction}\n{input}\n\n### Response:"
+    ),
+    "prompt_no_input": (
+        "{instruction}\n\n### Response:"
+    ),
+}
+PROMPT_DICT_VICUNA = {
+    "prompt_input": (
+        "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: {instruction}\nInput:\n{input} ASSISTANT:"
+    ),
+    "prompt_no_input": (
+        "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: {instruction} ASSISTANT:"
+    ),
+}
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Finetune a transformers model on a summarization task")
+    parser = argparse.ArgumentParser()
     parser.add_argument(
         "--dataset_name",
         type=str,
@@ -27,10 +43,10 @@ def parse_args():
         help="The name of the dataset to use (via the datasets library).",
     )
     parser.add_argument(
-        "--training_data_source_name",
+        "--prompt",
         type=str,
         default='alpaca',
-        help="The training_data_source_name.",
+        help="alpaca, wiz, vicuna.",
     )
     parser.add_argument(
         "--num_beams",
@@ -46,12 +62,6 @@ def parse_args():
         type=str,
         help="Path to pretrained model or model identifier from huggingface.co/models.",
         required=False,
-    )
-    parser.add_argument(
-        "--per_device_eval_batch_size",
-        type=int,
-        default=8,
-        help="Batch size (per device) for the evaluation dataloader.",
     )
     parser.add_argument("--seed", type=int, default=0, help="A seed for reproducible training.")
     parser.add_argument("--max_length", type=int, default=1024)
@@ -69,26 +79,29 @@ def main():
 
     model.to(device)
     model.eval()
-    if(args.training_data_source_name=='alpaca'or args.training_data_source_name=='alpaca_gpt4'):
-        prompt_input, prompt_no_input = PROMPT_DICT["prompt_input"], PROMPT_DICT["prompt_no_input"]
+
+    if args.prompt == 'alpaca':
+        prompt_input, prompt_no_input = PROMPT_DICT_ALPACA["prompt_input"], PROMPT_DICT_ALPACA["prompt_no_input"]
+    elif args.prompt == 'wiz':
+        prompt_input, prompt_no_input = PROMPT_DICT_WIZARDLM["prompt_input"], PROMPT_DICT_WIZARDLM["prompt_no_input"]
+    elif args.prompt == 'vicuna':
+        prompt_input, prompt_no_input = PROMPT_DICT_VICUNA["prompt_input"], PROMPT_DICT_VICUNA["prompt_no_input"]
+
     
     if(args.dataset_name=="vicuna"):
-        dataset_path = './test_data/vicuna_test_set.jsonl'
+        dataset_path = 'evaluation/test_data/vicuna_test_set.jsonl'
         prompt_key = 'text'
     elif(args.dataset_name=="koala"):
-        dataset_path = './test_data/koala_test_set.jsonl'
+        dataset_path = 'evaluation/test_data/koala_test_set.jsonl'
         prompt_key = 'prompt'
     elif(args.dataset_name=="sinstruct"):
-        dataset_path = './test_data/sinstruct_test_set.jsonl'
+        dataset_path = 'evaluation/test_data/sinstruct_test_set.jsonl'
         prompt_key = 'instruction'
     elif(args.dataset_name=="wizardlm"):
-        dataset_path = './test_data/wizardlm_test_set.jsonl'
+        dataset_path = 'evaluation/test_data/wizardlm_test_set.jsonl'
         prompt_key = 'Instruction'
-    elif(args.dataset_name=="truthfulqa"):
-        dataset_path = './test_data/truthfulqa_test_set.jsonl'
-        prompt_key = 'Question'
     elif(args.dataset_name=="lima"):
-        dataset_path = './test_data/lima_test_set.jsonl'
+        dataset_path = 'evaluation/test_data/lima_test_set.jsonl'
         prompt_key = 'conversations'
 
     with open(dataset_path) as f:
@@ -111,14 +124,17 @@ def main():
             generate_ids = model.generate(input_ids, max_length=args.max_length)
             outputs = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
             point['raw_output'] = outputs
-            point['response'] = outputs.split("Response:")[1]
+            if args.prompt in ['alpaca','wiz']:
+                point['response'] = outputs.split("Response:")[1]
+            elif args.prompt in ['vicuna']:
+                point['response'] = outputs.split("ASSISTANT:")[1]
             results.append(point)
 
     output_dir =  os.path.join(args.model_name_or_path, 'test_inference')
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-    saved_name = args.dataset_name + "_" + str(args.seed) + '_' + str(args.max_length) + ".json"
+    saved_name = args.dataset_name + "_" + str(args.max_length) + ".json"
     with open(os.path.join(output_dir, saved_name), "w") as f:
         json.dump(results, f, indent=4)
 

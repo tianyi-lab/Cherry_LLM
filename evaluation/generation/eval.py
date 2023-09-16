@@ -84,7 +84,7 @@ def get_json_list(file_path):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ChatGPT-based QA evaluation.")
+    parser = argparse.ArgumentParser()
     parser.add_argument("--wraped_file",default='')
     parser.add_argument("--api_key",type=str,default='')
     parser.add_argument("--api_model",type=str,default='gpt-3.5-turbo')
@@ -120,8 +120,6 @@ if __name__ == "__main__":
         prompt_key = 'instruction'
     elif(dataset_name=="wizardlm"):
         prompt_key = 'Instruction'
-    elif(dataset_name=="truthfulqa"):
-        prompt_key = 'Question'
     elif(dataset_name=="lima"):
         prompt_key = 'conversations'
 
@@ -192,12 +190,8 @@ if __name__ == "__main__":
         predictions_all.append(predictions)
 
     all_scores = []
-    ans1_win_idsx_list = []
-    ans2_win_idsx_list = []
     for reverse in range(2):
         scores_list = []
-        ans1_win_idsx = [0 for _ in range(total_len)]
-        ans2_win_idsx = [0 for _ in range(total_len)]
         predictions = predictions_all[reverse]
         for idx, prediction in enumerate(predictions):
             review = prediction['choices'][0]['message']['content']
@@ -207,40 +201,19 @@ if __name__ == "__main__":
             qa_jsons[idx][review_key] = review
             qa_jsons[idx][scores_key] = str(scores)
             scores_list.append(scores)
-            if scores[0] > scores[1]:
-                if not reverse:
-                    ans1_win_idsx[idx] = 1
-                else:
-                    ans2_win_idsx[idx] = 1
-            elif scores[1] > scores[0]:
-                if not reverse:
-                    ans2_win_idsx[idx] = 1
-                else:
-                    ans1_win_idsx[idx] = 1
 
         all_scores.append(scores_list)
         avg_scores = np.array(scores_list).mean(0)
         avg_key = 'average_scores' if not reverse else 'average_scores_reverse'
         meta_info[avg_key] = str(avg_scores.tolist())
 
-        ans1_win_idsx_list.append(ans1_win_idsx)
-        ans2_win_idsx_list.append(ans2_win_idsx)
-
-    ans1_win_idx_overall = np.array(ans1_win_idsx_list[0]) * np.array(ans1_win_idsx_list[1]) 
-    ans2_win_idx_overall = np.array(ans2_win_idsx_list[0]) * np.array(ans2_win_idsx_list[1]) 
-    # ans1_win_count = ans1_win_idx_overall.sum()
-    # ans2_win_count = ans2_win_idx_overall.sum()
-
-    # meta_info['ans1_win_count'] = ans1_win_count.tolist()
-    # meta_info['ans2_win_count'] = ans2_win_count.tolist()
-
     wraped_info['Meta_Info'] = meta_info
     wraped_info['data'] = qa_jsons
     
-    if args.api_model == 'gpt-4':
+    if 'gpt-4' in args.api_model:
         output_review_file = args.wraped_file.strip('.json') + '_reviews_gpt4.json'
-    else:
-        output_review_file = args.wraped_file.strip('.json') + '_reviews.json'
+    elif 'gpt-3.5' in args.api_model:
+        output_review_file = args.wraped_file.strip('.json') + '_reviews_gpt3.5.json'
     with open(f"{output_review_file}", "w") as f:
         json.dump(wraped_info, f, indent=4)
         pass
