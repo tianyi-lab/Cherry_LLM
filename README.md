@@ -34,7 +34,7 @@ Initially, the model is familiarized with a fraction of the target dataset durin
 ## Highlights
 
 * The selection of cherry data in this project is entirely self-guided and does not need ANY extra outside models, ranging from BERT to chatGPT.
-* We use approximately 5% or 10% of the data to have comparable performance to the models trained on the entire data, and this holds true for the famous [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) and [WizardLM](https://github.com/nlpxucan/WizardLM) datasets. 
+* We use approximately 5% or 10% of the data to have comparable performances to the models trained on full data, which is experimented on the [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) and [WizardLM](https://github.com/nlpxucan/WizardLM) datasets.
 * The IFD score provided by us can divide the samples into better or relatively bad ones, which might provide insight into the types of data good for instruction tuning.
 
 ## Install
