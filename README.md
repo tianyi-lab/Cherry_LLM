@@ -19,6 +19,7 @@ The repo contains:
 
 
 ## News
+- [2023/09] We released codes for evaluating the performance between two LLMs by using GPT4 or chatGPT. 
 - [2023/09] We released codes for this project.
 
 ## Contents
@@ -27,6 +28,7 @@ The repo contains:
 - [Install](#install)
 - [Run Code](#run-code)
 - [Data and Model Weights](#data-and-model-weights)
+- [Evaluation](#evaluation)
 - [Performance Comparison ](#performance-comparison)
 - [Prompt](#prompt)
 - [Hyperparameters](#hyperparameters)
@@ -164,6 +166,19 @@ Also, the WizardLM filter script is provided here: [[Link]](cherry_seletion/filt
 
 Note: Due to the hardware limit, all our models are using the 7B model. 
 
+## Evaluation
+
+We release the codes and data for using GPT4 or chatGPT to evaluate and compare the performance between two LLMs. This method greatly eliminates the potential position bias of GPT4 and chatGPT. For details, please see [AlpaGasus](https://github.com/Lichang-Chen/AlpaGasus) or our [paper](https://arxiv.org/abs/2308.12032). We thank [@Lichang-Chen](https://github.com/Lichang-Chen) and [AlpaGasus](https://github.com/Lichang-Chen/AlpaGasus) repo for sharing the evaluation codes.  
+
+To use this code, please follow the below scripts:
+
+```bash scripts/do_eval_generation.sh```: The model automatically generates the responses for a given instruction in test datasets. <br>
+```bash scripts/do_eval_generation_wrap.sh```: Wrap the response files of LLMs being compared. <br>
+```bash scripts/do_eval.sh```: Use GPT4 or chatGPT for the evaluation. <br>
+```bash scripts/do_review_eval_score.sh```: Parse the results and draw the figure. <be>
+
+More detailed illustration will be updated soon. 
+
 ## Performance Comparison 
 
 Comparing our models trained on selected data with models trained on full data. (a) Comparison between our model with 5% Alpaca data and the official Alpaca model. (b) Comparison between our model with 10% WizardLM data and the reimplemented WizardLM model. (c) Comparison between our model with 40% WizardLM data and the official WizardLM model. All these experiments use GPT4 as the judge. Each horizontal bar represents a comparison in a specific test set. 
@@ -172,7 +187,6 @@ Comparing our models trained on selected data with models trained on full data. 
 <a ><img src="images/main_result_gpt4.png" alt="overview" style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
 
-We thank [@Lichang-Chen](https://github.com/Lichang-Chen) and [AlpaGasus](https://github.com/Lichang-Chen/AlpaGasus) repo for sharing the evaluation codes and we will soon upload the codes.  
 
 ## Prompt
 
@@ -220,7 +234,7 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 
 ## ToDo
 - [x] Release the code, data, and models. 
-- [ ] Release the evaluation code for comparison.
+- [x] Release the evaluation code for comparison.
 - [ ] Train Cherry WizardLM with the length of 2048.
 - [ ] Maybe try using QLORA.
 
