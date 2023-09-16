@@ -124,15 +124,15 @@ These results verify the effectiveness of our method, which can be used to selec
 |--------------------------|:-----------:|:-------:|:-------------:|:-------:|:--------------:|:-:|:--------------:|:-:|:-:|:-:|
 | **Alpaca**      | 50.21       | 42.65   | 76.91         | 41.73   | 39.55          || 26.46          ||/|/|
 | **5% Alpaca**     | 52.06| 53.92   | 79.49         | 36.51   | 38.33          || 34.74          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_5_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-5-percent-7B)|
-| **10% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_10_percent.json)|[Link]|
-| **15% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_15_percent.json)|[Link]|
+| **10% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-10-percent-7B)|
+| **15% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_15_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-15-percent-7B)|
 ||||||||||||
 | **WizardLM**    | 54.18       | 51.60   | 77.70         | 42.70   | 44.70          || 67.64          ||/|/|
 | **WizardLM*** | 52.79  | 53.07   | 77.44         | 37.75   | 42.90          || 61.99          ||[[hf-Link]](https://huggingface.co/datasets/MingLiiii/cherry_wizardlm_filtered)|[Link]|
-| **10% WizardLM**  | 51.59       | 52.90   | 78.95         | 33.08   | 41.41         || 61.44          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_10_percent.json)|[Link]|
-| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_20_percent.json)|[Link]|
-| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_30_percent.json)|[Link]|
-| **40% WizardLM**  | 52.83       | 53.07   | 77.79         | 35.29   | 45.17          || 65.09          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_40_percent.json)|[Link]|
+| **10% WizardLM**  | 51.59       | 52.90   | 78.95         | 33.08   | 41.41         || 61.44          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-10-percent-7B)|
+| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_20_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-20-percent-7B)|
+| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_30_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-30-percent-7B)|
+| **40% WizardLM**  | 52.83       | 53.07   | 77.79         | 35.29   | 45.17          || 65.09          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_40_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-40-percent-7B)|
 ||||||||||
 
 |                          | **Model**|
