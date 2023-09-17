@@ -177,7 +177,7 @@ To use this code, please follow the below scripts:
 ```bash scripts/do_eval.sh```: Use GPT4 or chatGPT for the evaluation. <br>
 ```bash scripts/do_review_eval_score.sh```: Parse the results and draw the figure. <be>
 
-More detailed illustration will be updated soon. 
+More detailed illustrations will be updated. Feel free to drop me an email if you are urgent about it. 
 
 ## Performance Comparison 
 
