@@ -133,9 +133,9 @@ python cherry_seletion/data_by_IFD.py \
 
 ### llama 1 models
 
-The following table provides a comparison between our cherry models and baseline models on the Huggingface Open LLM Leaderboard and AlpacaEval Leaderboard. 
+The following table provides a comparison between our cherry models and baseline models on the Huggingface Open LLM Leaderboard and AlpacaEval Leaderboard. <br>
 These results are based on cherry_data_v1. The prompt and training hyperparameters can be found in the Hyperparameters section. 
-These results verify the effectiveness of our method, which can be used to select the most valuable data samples for instruction tuning. 
+These results verify the effectiveness of our method, which can be used to select the most valuable data samples for instruction tuning. <br>
 
 
 |                          | **Avg** | **ARC** | **HellaSwag** | **MMLU** | **TruthfulQA** || **AlpacaEval** ||**Data**| **Model**|
@@ -157,20 +157,20 @@ Also, the WizardLM filter script is provided here: [[Link]](cherry_seletion/filt
 
 ### llama 2 models 
 
-Thanks to the [FastChat](https://github.com/lm-sys/FastChat) and [flash-attention](https://github.com/Dao-AILab/flash-attention), we are able to run our experiments with longer length. 
+Thanks to the [FastChat](https://github.com/lm-sys/FastChat) and [flash-attention](https://github.com/Dao-AILab/flash-attention), we are able to run our experiments with longer length. <br>
 The above results are directly using cherry_data_v1 for finetuning the llama-2-7B model, with the length of 2048, and using original vicuna prompts. 
 
 |                          | **Avg** | **ARC** | **HellaSwag** | **MMLU** | **TruthfulQA** || **AlpacaEval** ||**Data**| **Model**|
 |--------------------------|:-----------:|:-------:|:-------------:|:-------:|:--------------:|:-:|:--------------:|:-:|:-:|:-:|
-| **WizardLM**    | 57.09       | 54.18   | 79.25         | 46.92   | 48.01          || 66.08          ||/|/|
-| **10% WizardLM**  | 57.57       | 54.86   | 80.46         | 45.74   | 49.20         || 71.36          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_10_percent.json)||
-| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_20_percent.json)||
-| **20% WizardLM**     | 58.50       | 55.97   | 80.40         | 46.87   | 50.76          || 72.57          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_30_percent.json)||
-| **40% WizardLM**  | 58.00       | 56.23   | 80.22         | 46.15   | 49.37          || 70.52          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_40_percent.json)||
+| **WizardLM**    | 57.09       | 54.18   | 79.25         | 46.92   | 48.01          || 66.08          ||/|[Link]|
+| **10% WizardLM**  | 57.57       | 54.86   | 80.46         | 45.74   | 49.20         || 71.36          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_10_percent.json)|[Link]|
+| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_20_percent.json)|[Link]|
+| **20% WizardLM**     | 58.50       | 55.97   | 80.40         | 46.87   | 50.76          || 72.57          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_30_percent.json)|[Link]|
+| **40% WizardLM**  | 58.00       | 56.23   | 80.22         | 46.15   | 49.37          || 70.52          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_40_percent.json)|[Link]|
 ||||||||||
 
-Note: WizardLM in the above table is our implementation using [FastChat](https://github.com/lm-sys/FastChat) code, prompt, and configuration. 
-Note: Due to the hardware limit, all our models are using the 7B model. 
+Note: WizardLM in the above table is our implementation using [FastChat](https://github.com/lm-sys/FastChat) code, prompt, and configuration. <br>
+Note: Due to the hardware limit, all our models are using the 7B model. <br>
 Note: For these llama2 models, we still use the cherry_data_v1 to ensure the effectiveness of our data. We will soon make the cherry_data_v2 which is based on llama2 available. 
 
 ## Evaluation
@@ -232,6 +232,7 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 ### Response:
 ```
 
+
 ## Hyperparameters
 
 | Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay | Warmup Rate |
@@ -242,8 +243,11 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 ## ToDo
 - [x] Release the code, data, and models. 
 - [x] Release the evaluation code for comparison.
-- [ ] Train Cherry WizardLM with the length of 2048.
+- [x] Train Cherry WizardLM with the length of 2048.
+- [ ] Implement our method on llama 2 models. 
 - [ ] Maybe try using QLORA.
+
+Note: We are sorry that due to the limitation on computing resources, we can not make it faster. 
 
 ## Citation
 
