@@ -13,12 +13,13 @@ This is the repo for the Cherry Data Selection project, which introduces a self-
 
 The repo contains:
 
-- The cherry data used for fine-tuning the model.
+- The cherry data used for fine-tuning the model, cherry_data_v1 represents the cherry data obtained based on the llama-1 model. 
 - The model checkpoints (7B) that were trained using our cherry data.
 - The code for selecting cherry data from the existing instruction-tuning dataset.
 
 
 ## News
+- [2023/09] We partially reconstructed the repo structure and added some results on llama2.  
 - [2023/09] We released codes for evaluating the performance between two LLMs by using GPT4 or chatGPT. 
 - [2023/09] We released codes for this project.
 
@@ -27,7 +28,7 @@ The repo contains:
 - [Highlights](#highlights)
 - [Install](#install)
 - [Run Code](#run-code)
-- [Data and Model Weights](#data-and-model-weights)
+- [Data and Model Weights V1](#data-and-model-weights-v1)
 - [Evaluation](#evaluation)
 - [Performance Comparison ](#performance-comparison)
 - [Prompt](#prompt)
@@ -128,9 +129,10 @@ python cherry_seletion/data_by_IFD.py \
 
 6. Train Cherry Model
 
-## Data and Model Weights
+## Data and Model Weights V1
 
 The following table provides a comparison between our cherry models and baseline models on the Huggingface Open LLM Leaderboard and AlpacaEval Leaderboard. 
+These results are based on cherry_data_v1. The prompt and training hyperparameters can be found in the Hyperparameters section. 
 These results verify the effectiveness of our method, which can be used to select the most valuable data samples for instruction tuning. 
 
 
@@ -149,18 +151,6 @@ These results verify the effectiveness of our method, which can be used to selec
 | **40% WizardLM**  | 52.83       | 53.07   | 77.79         | 35.29   | 45.17          || 65.09          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_40_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-40-percent-7B)|
 ||||||||||
 
-|                          | **Model**|
-|--------------------------|:-:|
-| Pre-Experienced Model (Alpaca)      |[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-pre-experienced-7B)|
-| Pre-Experienced Model (WizardLM)     |[Link]|
-
-
-
-Moreover, we provide the IFD score of each data sample in the Alpaca dataset and WizardLM dataset, hoping it would be beneficial to the community. 
-
-The Alpaca date can be found here:[[Link]](data/alpaca_data_idf.json)
-
-The WizardLM (filtered) date can be found here:[[hf-Link]](https://huggingface.co/datasets/MingLiiii/cherry_wizardlm_filtered_idf)
 
 Also, the WizardLM filter script is provided here: [[Link]](cherry_seletion/filter.py)
 
