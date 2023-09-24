@@ -131,6 +131,8 @@ python cherry_seletion/data_by_IFD.py \
 
 ## Data and Model Weights V1
 
+### llama 1 models
+
 The following table provides a comparison between our cherry models and baseline models on the Huggingface Open LLM Leaderboard and AlpacaEval Leaderboard. 
 These results are based on cherry_data_v1. The prompt and training hyperparameters can be found in the Hyperparameters section. 
 These results verify the effectiveness of our method, which can be used to select the most valuable data samples for instruction tuning. 
@@ -139,22 +141,37 @@ These results verify the effectiveness of our method, which can be used to selec
 |                          | **Avg** | **ARC** | **HellaSwag** | **MMLU** | **TruthfulQA** || **AlpacaEval** ||**Data**| **Model**|
 |--------------------------|:-----------:|:-------:|:-------------:|:-------:|:--------------:|:-:|:--------------:|:-:|:-:|:-:|
 | **Alpaca**      | 50.21       | 42.65   | 76.91         | 41.73   | 39.55          || 26.46          ||/|/|
-| **5% Alpaca**     | 52.06| 53.92   | 79.49         | 36.51   | 38.33          || 34.74          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_5_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-5-percent-7B)|
-| **10% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-10-percent-7B)|
-| **15% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherrt_alpaca/cherry_alpaca_15_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-15-percent-7B)|
+| **5% Alpaca**     | 52.06| 53.92   | 79.49         | 36.51   | 38.33          || 34.74          ||[[Link]](cherry_data_v1/cherrt_alpaca/cherry_alpaca_5_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-5-percent-7B)|
+| **10% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherrt_alpaca/cherry_alpaca_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-10-percent-7B)|
+| **15% Alpaca**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherrt_alpaca/cherry_alpaca_15_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-alpaca-15-percent-7B)|
 ||||||||||||
 | **WizardLM**    | 54.18       | 51.60   | 77.70         | 42.70   | 44.70          || 67.64          ||/|/|
 | **WizardLM*** | 52.79  | 53.07   | 77.44         | 37.75   | 42.90          || 61.99          ||[[hf-Link]](https://huggingface.co/datasets/MingLiiii/cherry_wizardlm_filtered)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-filtered-7B)|
-| **10% WizardLM**  | 51.59       | 52.90   | 78.95         | 33.08   | 41.41         || 61.44          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-10-percent-7B)|
-| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_20_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-20-percent-7B)|
-| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_30_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-30-percent-7B)|
-| **40% WizardLM**  | 52.83       | 53.07   | 77.79         | 35.29   | 45.17          || 65.09          ||[[Link]](data/cherry_wizardLM/cherry_wizardLM_40_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-40-percent-7B)|
+| **10% WizardLM**  | 51.59       | 52.90   | 78.95         | 33.08   | 41.41         || 61.44          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_10_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-10-percent-7B)|
+| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_20_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-20-percent-7B)|
+| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_30_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-30-percent-7B)|
+| **40% WizardLM**  | 52.83       | 53.07   | 77.79         | 35.29   | 45.17          || 65.09          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_40_percent.json)|[[hf-Link]](https://huggingface.co/MingLiiii/cherry-wizardlm-40-percent-7B)|
 ||||||||||
-
 
 Also, the WizardLM filter script is provided here: [[Link]](cherry_seletion/filter.py)
 
+### llama 2 models 
+
+Thanks to the [FastChat](https://github.com/lm-sys/FastChat) and [flash-attention](https://github.com/Dao-AILab/flash-attention), we are able to run our experiments with longer length. 
+The above results are directly using cherry_data_v1 for finetuning the llama-2-7B model, with the length of 2048, and using original vicuna prompts. 
+
+|                          | **Avg** | **ARC** | **HellaSwag** | **MMLU** | **TruthfulQA** || **AlpacaEval** ||**Data**| **Model**|
+|--------------------------|:-----------:|:-------:|:-------------:|:-------:|:--------------:|:-:|:--------------:|:-:|:-:|:-:|
+| **WizardLM**    | 57.09       | 54.18   | 79.25         | 46.92   | 48.01          || 66.08          ||/|/|
+| **10% WizardLM**  | 57.57       | 54.86   | 80.46         | 45.74   | 49.20         || 71.36          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_10_percent.json)||
+| **20% WizardLM**     | /       | /   | /         | /   | /          || /          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_20_percent.json)||
+| **20% WizardLM**     | 58.50       | 55.97   | 80.40         | 46.87   | 50.76          || 72.57          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_30_percent.json)||
+| **40% WizardLM**  | 58.00       | 56.23   | 80.22         | 46.15   | 49.37          || 70.52          ||[[Link]](cherry_data_v1/cherry_wizardLM/cherry_wizardLM_40_percent.json)||
+||||||||||
+
+Note: WizardLM in the above table is our implementation using [FastChat](https://github.com/lm-sys/FastChat) code, prompt, and configuration. 
 Note: Due to the hardware limit, all our models are using the 7B model. 
+Note: For these llama2 models, we still use the cherry_data_v1 to ensure the effectiveness of our data. We will soon make the cherry_data_v2 which is based on llama2 available. 
 
 ## Evaluation
 
