@@ -160,6 +160,7 @@ cython_debug/
 #.idea/
 
 scripts_test
-other_data
+other_data*
 trained_models*
 workspace
+cherry_selection_direct_mod

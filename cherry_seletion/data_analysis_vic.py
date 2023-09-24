@@ -13,6 +13,26 @@ if torch.cuda.is_available():
 else:
     device = "cpu"
 
+PROMPT_DICT_ALPACA = {
+    "prompt_input": (
+        "Below is an instruction that describes a task, paired with an input that provides further context. "
+        "Write a response that appropriately completes the request.\n\n"
+        "### Instruction:\n{instruction}\n\n### Input:\n{input}\n\n### Response:"
+    ),
+    "prompt_no_input": (
+        "Below is an instruction that describes a task. "
+        "Write a response that appropriately completes the request.\n\n"
+        "### Instruction:\n{instruction}\n\n### Response:"
+    ),
+}
+PROMPT_DICT_WIZARDLM = {
+    "prompt_input": (
+        "{instruction}\n{input}\n\n### Response:"
+    ),
+    "prompt_no_input": (
+        "{instruction}\n\n### Response:"
+    ),
+}
 PROMPT_DICT_VICUNA = {
     "prompt_input": (
         "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: {instruction}\nInput:\n{input} ASSISTANT:"
@@ -30,7 +50,7 @@ def parse_args():
     parser.add_argument("--max_length", type=int, default=512)
     parser.add_argument("--start_idx", type=int, default=0)
     parser.add_argument("--end_idx", type=int, default=-1)
-    parser.add_argument("--prompt", type=str, default='vicuna', help='vicuna')
+    parser.add_argument("--prompt", type=str, default='vicuna', help='vicuna, wiz, alpaca')
     parser.add_argument("--mod", type=str, default='pre', help='pre, cherry')
     args = parser.parse_args()
     return args
@@ -104,6 +124,23 @@ def main():
     end_idx = args.end_idx if args.end_idx != -1 else len(data)
     sampled_data = data[start_idx:end_idx]
 
+    prompt_specific_len = 0
+    if args.prompt == 'alpaca':
+        prompt_no_input = PROMPT_DICT_ALPACA["prompt_no_input"]
+        prompt_input = PROMPT_DICT_ALPACA["prompt_input"]
+        direct_answer_prompt = '### Response:'
+        prompt_specific_len = 4
+    elif args.prompt == 'wiz':
+        prompt_no_input = PROMPT_DICT_WIZARDLM["prompt_no_input"]
+        prompt_input = PROMPT_DICT_WIZARDLM["prompt_input"]
+        direct_answer_prompt = '### Response:'
+        prompt_specific_len = 4
+    elif args.prompt == 'vicuna':
+        prompt_no_input = PROMPT_DICT_VICUNA["prompt_no_input"]
+        prompt_input = PROMPT_DICT_VICUNA["prompt_input"]
+        direct_answer_prompt = 'ASSISTANT:'
+        prompt_specific_len = 6
+
     import time
     strat_time = time.time()
     new_data = []
@@ -113,17 +150,16 @@ def main():
         instruct_i = data_i['instruction']
         output_i = data_i['output']
 
-        direct_answer_text = 'ASSISTANT:' + output_i
-
+        direct_answer_text = direct_answer_prompt + output_i
         input_i = data_i['input'] if 'input' in data_i.keys() else ''
         if input_i == '':
             temp_dict = {'instruction':instruct_i}
-            promt_to_use = PROMPT_DICT_VICUNA["prompt_no_input"].format_map(temp_dict)
+            promt_to_use = prompt_no_input.format_map(temp_dict)
             whole_text = promt_to_use + output_i
             instruct_i = promt_to_use
         else:
             temp_dict = {'instruction':instruct_i,'input':input_i}
-            promt_to_use = PROMPT_DICT_VICUNA["prompt_input"].format_map(temp_dict)
+            promt_to_use = prompt_input.format_map(temp_dict)
             whole_text = promt_to_use + output_i
             instruct_i = promt_to_use
 
@@ -137,7 +173,7 @@ def main():
             instruct_i_input_ids = tokenizer.encode(instruct_i, return_tensors="pt", truncation=True, max_length=args.max_length).to(device)
             instruct_i_len = instruct_i_input_ids.shape[1] 
         
-            ppl_out_alone, _, loss_list_alone = get_perplexity_and_embedding_part_text(tokenizer, model, direct_answer_text, output_i, args.max_length-instruct_i_len+6)
+            ppl_out_alone, _, loss_list_alone = get_perplexity_and_embedding_part_text(tokenizer, model, direct_answer_text, output_i, args.max_length-instruct_i_len+prompt_specific_len)
             ppl_out_condition, _, loss_list_condition = get_perplexity_and_embedding_part_text(tokenizer, model, whole_text, output_i, args.max_length)
 
             temp_data_i['ppl'] = [0,ppl_out_alone,ppl_out_condition]

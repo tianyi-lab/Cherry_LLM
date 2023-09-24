@@ -10,8 +10,8 @@ def filter_and_sort(data, num_select):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--json_data_path", type=str, required=True)
-    parser.add_argument("--json_save_path", type=str, required=True)
+    parser.add_argument("--json_data_path", type=str, default='')
+    parser.add_argument("--json_save_path", type=str, default='')
     parser.add_argument("--sample_rate", type=float, default=0)
     parser.add_argument("--sample_number", type=int, default=0)
     args = parser.parse_args()

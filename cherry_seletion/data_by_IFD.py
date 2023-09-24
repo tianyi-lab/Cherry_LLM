@@ -19,14 +19,14 @@ PROMPT_DICT = {
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--pt_data_path", type=str, required=True)
-    parser.add_argument("--json_data_path", type=str, required=True)
-    parser.add_argument("--json_save_path", type=str, required=True)
-    parser.add_argument("--model_name_or_path", type=str, required=True)
+    parser.add_argument("--pt_data_path", type=str, default='')
+    parser.add_argument("--json_data_path", type=str, default='')
+    parser.add_argument("--json_save_path", type=str, default='')
+    parser.add_argument("--model_name_or_path", type=str, default='')
     parser.add_argument("--max_length", type=int, default=1024)
     parser.add_argument("--sample_rate", type=float, default=0.1)
     parser.add_argument("--sample_number", type=int, default=0)
-    parser.add_argument("--prompt", type=str, default='wiz', help='wiz, alpaca')
+    parser.add_argument("--prompt", type=str, default='alpaca', help='wiz, alpaca')
     args = parser.parse_args()
     return args
 
@@ -65,10 +65,12 @@ def main():
                 temp_dict = {'instruction':instruct_i}
                 promt_to_use = PROMPT_DICT["prompt_no_input"].format_map(temp_dict)
                 whole_text = promt_to_use + output_i
+                instruct_i = promt_to_use
             else:
                 temp_dict = {'instruction':instruct_i,'input':input_i}
                 promt_to_use = PROMPT_DICT["prompt_input"].format_map(temp_dict)
                 whole_text = promt_to_use + output_i
+                instruct_i = promt_to_use
 
         # Tokenize the input text
         instruct_i_input_ids = tokenizer.encode(instruct_i, return_tensors="pt", truncation=True, max_length=args.max_length).to('cpu')
@@ -92,7 +94,7 @@ def main():
             len_1, token_ids_1, loss_list_1 = get_loss_part_text(tokenizer, direct_answer_text, output_i, args.max_length-instruct_i_len+4, loss_1_list)
             len_2, token_ids_2, loss_list_2 = get_loss_part_text(tokenizer, whole_text, output_i, args.max_length, loss_2_list)
 
-            if len_1 == 0 or len_2 == 0:
+            if len_1 <= 0 or len_2 <= 0:
                 continue
 
             if instruct_i_len + len_1 > args.max_length:
