@@ -19,6 +19,7 @@ The repo contains:
 
 
 ## News
+- [2023/11] We added some results on llama2-7b and llama2-13b, further showing the generalizability of our method.  
 - [2023/09] We partially reconstructed the repo structure and added some results on llama2.  
 - [2023/09] We released codes for evaluating the performance between two LLMs by using GPT4 or chatGPT. 
 - [2023/09] We released codes for this project.
@@ -29,6 +30,7 @@ The repo contains:
 - [Install](#install)
 - [Run Code](#run-code)
 - [Data and Model Weights V1](#data-and-model-weights-v1)
+- [Data and Model Weights V2](#data-and-model-weights-v2)
 - [Evaluation](#evaluation)
 - [Performance Comparison ](#performance-comparison)
 - [Prompt](#prompt)
@@ -173,6 +175,24 @@ Note: WizardLM in the above table is our implementation using [FastChat](https:/
 Note: Due to the hardware limit, all our models are using the 7B model. <br>
 Note: For these llama2 models, we still use the cherry_data_v1 to ensure the effectiveness of our data. We will soon make the cherry_data_v2 which is based on llama2 available. 
 
+## Data and Model Weights V2
+
+In this section, all the IFD scores are calculated on llama2-7b or llama2-13b models by using Vicuna's prompt. The training of pre-experienced models is discarded for more efficient usage. The performances are promising in the llama2 model even without a pre-experienced model, indicating the proficiency of our proposed IFD scores. 
+
+|                          | **Avg** | **ARC** | **HellaSwag** | **MMLU** | **TruthfulQA** || **AlpacaEval** ||**Data**| **Model**|
+|--------------------------|:-----------:|:-------:|:-------------:|:-------:|:--------------:|:-:|:--------------:|:-:|:-:|:-:|
+| **Alpaca-7b (llama2)**      | 55.25       | 54.35   |    78.65      |  47.02   |    40.98      ||    27.75       ||/|/|
+| **5% Alpaca-7b (llama2)**     | 55.78| 57.94   | 80.37         | 44.91   | 40.62          || 36.78          ||/|/|
+| **10% Alpaca-7b (llama2)**     | 56.31       | 58.02   | 80.42         | 46.64   | 40.18          || /          ||/|/|
+| **15% Alpaca-7b (llama2)**     | 56.37       | 57.42   | 80.68         | 46.40   | 40.95         || /          ||/|/|
+||||||||||||
+| **Alpaca-13b (llama2)**      | 58.78       | 57.59   |    81.98      |  54.05   |    41.49      ||    35.00       ||/|/|
+| **5% Alpaca-13b (llama2)**     | 61.21| 62.37   | 84.00         | 55.65   | 42.82          || 46.82          ||/|/|
+| **10% Alpaca-13b (llama2)**     | 61.02       | 62.97   | 83.88         | 55.29   | 41.93          || /          ||/|/|
+| **15% Alpaca-13b (llama2)**     | 61.23       | 62.37   | 83.48         | 55.56   | 43.42         || /          ||/|/|
+
+All the above models are trained using [FastChat](https://github.com/lm-sys/FastChat) code and prompt. 
+
 ## Evaluation
 
 We release the codes and data for using GPT4 or chatGPT to evaluate and compare the performance between two LLMs. This method greatly eliminates the potential position bias of GPT4 and chatGPT. For details, please see [AlpaGasus](https://github.com/Lichang-Chen/AlpaGasus) or our [paper](https://arxiv.org/abs/2308.12032). We thank [@Lichang-Chen](https://github.com/Lichang-Chen) and [AlpaGasus](https://github.com/Lichang-Chen/AlpaGasus) repo for sharing the evaluation codes.  
@@ -237,15 +257,18 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 
 | Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay | Warmup Rate |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Cherry Models (Alpaca) | 128 | 2e-5 | 3 | 512 | 0 | 0.03 |
-| Cherry Models (WizardLM) | 128 | 2e-5 | 3 | 1024 | 0 | 0.03 |
+| Cherry Models V1 (Alpaca) | 128 | 2e-5 | 3 | 512 | 0 | 0.03 |
+| Cherry Models V1 (WizardLM) | 128 | 2e-5 | 3 | 1024 | 0 | 0.03 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Cherry Models V2 7B | 128 | 2e-5 | 3 | 2048 | 0 | 0.03 |
+| Cherry Models V2 13B | 128 | 1e-5 | 5 | 2048 | 0 | 0.03 |
 
 ## ToDo
 - [x] Release the code, data, and models. 
 - [x] Release the evaluation code for comparison.
 - [x] Train Cherry WizardLM with the length of 2048.
-- [ ] Implement our method on llama 2 models. 
-- [ ] Maybe try using QLORA.
+- [x] Implement our method on llama 2 models. 
+- [ ] Modify the paper
 
 Note: We are sorry that due to the limitation on computing resources, we can not make it faster. 
 
