@@ -191,7 +191,8 @@ In this section, all the IFD scores are calculated on llama2-7b or llama2-13b mo
 | **10% Alpaca-13b (llama2)**     | 61.02       | 62.97   | 83.88         | 55.29   | 41.93          || /          ||/|/|
 | **15% Alpaca-13b (llama2)**     | 61.23       | 62.37   | 83.48         | 55.56   | 43.42         || /          ||/|/|
 
-All the above models are trained using [FastChat](https://github.com/lm-sys/FastChat) code and prompt. 
+All the above models are trained using [FastChat](https://github.com/lm-sys/FastChat) code and prompt. <br>
+Data with IFD scores will be released soon. 
 
 ## Evaluation
 
