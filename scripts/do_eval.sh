@@ -8,7 +8,7 @@ array=(
 for i in "${array[@]}"
 do
     echo $i
-        python eval_after_wrap.py \
+        python evaluation/generation/eval.py \
             --wraped_file $i \
             --batch_size 15 \
             --api_key xxx \
