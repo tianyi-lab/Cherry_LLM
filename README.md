@@ -20,8 +20,8 @@ The repo contains:
 (Feel free to email minglii@umd.edu for any questions or feedback.)
 
 ## News
-- [2023/12] The statistics necessary for calculating IFD scores on Alpaca and WizardLM on llama2-7b and llama2-13b were released, please check: [Alpaca llama2 7b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_7b), [Alpaca llama2 13b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_13b), [WizardLM70k llama2 7b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_7b), [WizardLM70k llama2 13b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_13b)
-- [2023/12] An updated code for calculating the statistics for IFD scores, please check [Reflection-Tuning](https://github.com/tianyi-lab/Reflection_Tuning?tab=readme-ov-file#code-for-selection).
+- [2023/12] An updated code for calculating the statistics for IFD scores, please check [Reflection-Tuning Code for Selection](https://github.com/tianyi-lab/Reflection_Tuning?tab=readme-ov-file#code-for-selection).
+- [2023/12] The statistics necessary for calculating IFD scores on Alpaca and WizardLM on llama2-7b and llama2-13b were released, please check: [Alpaca llama2 7b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_7b), [Alpaca llama2 13b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_13b), [WizardLM70k llama2 7b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_7b), [WizardLM70k llama2 13b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_13b).
 - [2023/11] We added some results on llama2-7b and llama2-13b, further showing the generalizability of our method.  
 - [2023/09] We partially reconstructed the repo structure and added some results on llama2.  
 - [2023/09] We released codes for evaluating the performance between two LLMs by using GPT4 or chatGPT. 
