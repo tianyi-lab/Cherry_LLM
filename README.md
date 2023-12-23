@@ -272,21 +272,19 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 - [x] Release the evaluation code for comparison.
 - [x] Train Cherry WizardLM with the length of 2048.
 - [x] Implement our method on llama 2 models. 
-- [ ] Modify the paper
-
-Note: We are sorry that due to the limitation on computing resources, we can not make it faster. 
+- [x] Modify the paper
 
 ## Citation
 
 Please consider citing our paper if you think our codes, data, or models are useful. Thank you!
 ```
-@misc{li2023quantity,
-      title={From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning}, 
-      author={Ming Li and Yong Zhang and Zhitao Li and Jiuhai Chen and Lichang Chen and Ning Cheng and Jianzong Wang and Tianyi Zhou and Jing Xiao},
-      year={2023},
-      eprint={2308.12032},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
+@article{Li2023FromQT,
+  title={From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning},
+  author={Ming Li and Yong Zhang and Zhitao Li and Jiuhai Chen and Lichang Chen and Ning Cheng and Jianzong Wang and Tianyi Zhou and Jing Xiao},
+  journal={ArXiv},
+  year={2023},
+  volume={abs/2308.12032},
+  url={https://api.semanticscholar.org/CorpusID:261076515}
 }
 ```
 
