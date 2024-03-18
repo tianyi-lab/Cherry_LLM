@@ -14,12 +14,13 @@ This is the repo for the Cherry Data Selection project, which introduces a self-
 The repo contains:
 
 - The cherry data used for fine-tuning the model, cherry_data_v1 represents the cherry data obtained based on the llama-1 model. 
-- The model checkpoints (7B) that were trained using our cherry data.
+- The model checkpoints that were trained using our cherry data.
 - The code for selecting cherry data from the existing instruction-tuning dataset.
 
 (Feel free to email minglii@umd.edu for any questions or feedback.)
 
 ## News
+- [2024/03] Our paper has been accepted to the NAACL 2024 main conference. 
 - [2024/02] We released the [Superfiltering](https://github.com/tianyi-lab/Superfiltering), which reveals the strong consistency between small and large LLMs in perceiving and evaluating the difficulty of instruction tuning data and utilizes a small LM, e.g., GPT-2 (124M), to effectively and efficiently select data for instruction tuning.
 - [2023/12] An updated code for calculating the statistics for IFD scores, please check [Reflection-Tuning Code for Selection](https://github.com/tianyi-lab/Reflection_Tuning?tab=readme-ov-file#code-for-selection).
 - [2023/12] The statistics necessary for calculating IFD scores on Alpaca and WizardLM on llama2-7b and llama2-13b were released, please check: [Alpaca llama2 7b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_7b), [Alpaca llama2 13b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_13b), [WizardLM70k llama2 7b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_7b), [WizardLM70k llama2 13b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_13b).
@@ -56,7 +57,9 @@ Initially, the model is familiarized with a fraction of the target dataset durin
 
 * The selection of cherry data in this project is entirely self-guided and does not need ANY extra outside models, ranging from BERT to chatGPT.
 * We use approximately 5% or 10% of the data to have comparable performances to the models trained on full data, which is experimented on the [Alpaca](https://github.com/tatsu-lab/stanford_alpaca) and [WizardLM](https://github.com/nlpxucan/WizardLM) datasets.
-* The IFD score provided by us can divide the samples into better or relatively bad ones, which might provide insight into the types of data good for instruction tuning.
+* The IFD score proposed by us can divide the samples into better or relatively bad ones, which might provide insight into the types of data good for instruction tuning.
+* **(Selective Reflection-Tuning)** The IFD scores and the reversed version can be utilized to construct better data! In [Reflection-Tuning Code for Selection](https://github.com/tianyi-lab/Reflection_Tuning?tab=readme-ov-file#code-for-selection), we proposed the Teacher-Student Collaboration pipeline to construct a training set customized for the student. 
+* **(Superfiltering)** The IFD scores calculated by LLMs with different sizes share strong consistencies! Thus you can utilize a really small language model like GPT2 to select the data for instruction tuning, which would be super fast and efficient! Please see [Superfiltering](https://github.com/tianyi-lab/Superfiltering) for details. 
 
 ## Install
 
