@@ -290,6 +290,25 @@ Please consider citing our paper if you think our codes, data, or models are use
   volume={abs/2308.12032},
   url={https://api.semanticscholar.org/CorpusID:261076515}
 }
+
+@article{Li2024SuperfilteringWD,
+  title={Superfiltering: Weak-to-Strong Data Filtering for Fast Instruction-Tuning},
+  author={Ming Li and Yong Zhang and Shwai He and Zhitao Li and Hongyu Zhao and Jianzong Wang and Ning Cheng and Tianyi Zhou},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2402.00530},
+  url={https://api.semanticscholar.org/CorpusID:267365346}
+}
+
+@article{Li2024SelectiveRS,
+  title={Selective Reflection-Tuning: Student-Selected Data Recycling for LLM Instruction-Tuning},
+  author={Ming Li and Lichang Chen and Jiuhai Chen and Shwai He and Jiuxiang Gu and Tianyi Zhou},
+  journal={ArXiv},
+  year={2024},
+  volume={abs/2402.10110},
+  url={https://api.semanticscholar.org/CorpusID:267682220}
+}
+
 ```
 
 
