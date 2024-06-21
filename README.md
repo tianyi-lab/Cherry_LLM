@@ -20,7 +20,7 @@ The repo contains:
 (Feel free to email minglii@umd.edu for any questions or feedback.)
 
 ## News
-- [2024/03] Our paper has been accepted to the NAACL 2024 main conference! 
+- [2024/03] Our paper has been accepted to the **NAACL 2024** main conference! 
 - [2024/02] We released the [Superfiltering](https://github.com/tianyi-lab/Superfiltering), which reveals the strong consistency between small and large LLMs in perceiving and evaluating the difficulty of instruction tuning data and utilizes a small LM, e.g., GPT-2 (124M), to effectively and efficiently select data for instruction tuning.
 - [2023/12] An updated code for calculating the statistics for IFD scores, please check [Reflection-Tuning Code for Selection](https://github.com/tianyi-lab/Reflection_Tuning?tab=readme-ov-file#code-for-selection).
 - [2023/12] The statistics necessary for calculating IFD scores on Alpaca and WizardLM on llama2-7b and llama2-13b were released, please check: [Alpaca llama2 7b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_7b), [Alpaca llama2 13b](https://huggingface.co/datasets/MingLiiii/Alpaca_Analysis_llama2_13b), [WizardLM70k llama2 7b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_7b), [WizardLM70k llama2 13b](https://huggingface.co/datasets/MingLiiii/Wiz70_Analysis_llama2_13b).
@@ -282,13 +282,27 @@ We used the following prompts for fine-tuning the cherry models with Wizard data
 
 Please consider citing our paper if you think our codes, data, or models are useful. Thank you!
 ```
-@article{Li2023FromQT,
-  title={From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning},
-  author={Ming Li and Yong Zhang and Zhitao Li and Jiuhai Chen and Lichang Chen and Ning Cheng and Jianzong Wang and Tianyi Zhou and Jing Xiao},
-  journal={ArXiv},
-  year={2023},
-  volume={abs/2308.12032},
-  url={https://api.semanticscholar.org/CorpusID:261076515}
+@inproceedings{li-etal-2024-quantity,
+    title = "From Quantity to Quality: Boosting {LLM} Performance with Self-Guided Data Selection for Instruction Tuning",
+    author = "Li, Ming  and
+      Zhang, Yong  and
+      Li, Zhitao  and
+      Chen, Jiuhai  and
+      Chen, Lichang  and
+      Cheng, Ning  and
+      Wang, Jianzong  and
+      Zhou, Tianyi  and
+      Xiao, Jing",
+    editor = "Duh, Kevin  and
+      Gomez, Helena  and
+      Bethard, Steven",
+    booktitle = "Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)",
+    month = jun,
+    year = "2024",
+    address = "Mexico City, Mexico",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.naacl-long.421",
+    pages = "7595--7628",
 }
 
 @article{Li2024SuperfilteringWD,
