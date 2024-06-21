@@ -1,5 +1,6 @@
 
-# From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning (NAACL'24)
+# From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning <br>
+(NAACL'24)
 
 
 [From Quantity to Quality: Boosting LLM Performance with Self-Guided Data Selection for Instruction Tuning](https://arxiv.org/abs/2308.12032)(NAACL'24)
