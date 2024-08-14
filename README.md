@@ -306,22 +306,46 @@ Please consider citing our paper if you think our codes, data, or models are use
     pages = "7595--7628",
 }
 
-@article{Li2024SuperfilteringWD,
-  title={Superfiltering: Weak-to-Strong Data Filtering for Fast Instruction-Tuning},
-  author={Ming Li and Yong Zhang and Shwai He and Zhitao Li and Hongyu Zhao and Jianzong Wang and Ning Cheng and Tianyi Zhou},
-  journal={ArXiv},
-  year={2024},
-  volume={abs/2402.00530},
-  url={https://api.semanticscholar.org/CorpusID:267365346}
+@inproceedings{li-etal-2024-superfiltering,
+    title = "Superfiltering: Weak-to-Strong Data Filtering for Fast Instruction-Tuning",
+    author = "Li, Ming  and
+      Zhang, Yong  and
+      He, Shwai  and
+      Li, Zhitao  and
+      Zhao, Hongyu  and
+      Wang, Jianzong  and
+      Cheng, Ning  and
+      Zhou, Tianyi",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.769",
+    pages = "14255--14273",
 }
 
-@article{Li2024SelectiveRS,
-  title={Selective Reflection-Tuning: Student-Selected Data Recycling for LLM Instruction-Tuning},
-  author={Ming Li and Lichang Chen and Jiuhai Chen and Shwai He and Jiuxiang Gu and Tianyi Zhou},
-  journal={ArXiv},
-  year={2024},
-  volume={abs/2402.10110},
-  url={https://api.semanticscholar.org/CorpusID:267682220}
+@inproceedings{li-etal-2024-selective,
+    title = "Selective Reflection-Tuning: Student-Selected Data Recycling for {LLM} Instruction-Tuning",
+    author = "Li, Ming  and
+      Chen, Lichang  and
+      Chen, Jiuhai  and
+      He, Shwai  and
+      Gu, Jiuxiang  and
+      Zhou, Tianyi",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand and virtual meeting",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-acl.958",
+    pages = "16189--16211",
 }
 
 @inproceedings{li2023reflectiontuning,
