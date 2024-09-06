@@ -366,7 +366,11 @@ If you are interested in **human/LLM-free Data Augmentation** for Instruction Tu
 If you are interested in **Data Improvement** for Instruction Tuning, please see [Reflection_Tuning](https://github.com/tianyi-lab/Reflection_Tuning). <br>
 If you are interested in **Knowledge Distillation** in the LLM era, please see this [Survey](https://github.com/Tebmer/Awesome-Knowledge-Distillation-of-LLMs). <br>
 
+## Star History
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=tianyi-lab/Cherry_LLM&type=Date)](https://star-history.com/#tianyi-lab/Cherry_LLM&Date)
 
 
 
