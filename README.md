@@ -368,8 +368,6 @@ If you are interested in **Knowledge Distillation** in the LLM era, please see t
 
 ## Star History
 
-## Star History
-
 [![Star History Chart](https://api.star-history.com/svg?repos=tianyi-lab/Cherry_LLM&type=Date)](https://star-history.com/#tianyi-lab/Cherry_LLM&Date)
 
 
