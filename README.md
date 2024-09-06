@@ -18,7 +18,7 @@ The repo contains:
 - The model checkpoints that were trained using our cherry data.
 - The code for selecting cherry data from the existing instruction-tuning dataset.
 
-(Feel free to email minglii@umd.edu for any questions or feedback.)
+(Feel free to email Ming ([Homepage](https://mingliiii.github.io/), [Email](minglii@umd.edu)) for any questions or feedback.)
 
 ## News
 - [2024/03] Our paper has been accepted to the **NAACL 2024** main conference! 
