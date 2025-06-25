@@ -12,7 +12,7 @@ Chinese Version: [[知乎]](https://zhuanlan.zhihu.com/p/718117800)
 
 This is the repo for the Cherry Data Selection project, which introduces a self-guided methodology for LLMs to autonomously discern and select cherry samples from vast open-source datasets, effectively minimizing manual curation and potential cost for instruction tuning an LLM.
 
-The repo contains:
+The repo contains: 
 
 - The cherry data used for fine-tuning the model, cherry_data_v1 represents the cherry data obtained based on the llama-1 model. 
 - The model checkpoints that were trained using our cherry data.
